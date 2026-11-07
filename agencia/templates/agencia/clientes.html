@@ -20,7 +20,7 @@
         }
 
         main {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 40px auto;
             background: white;
             padding: 30px;
@@ -35,10 +35,27 @@
             display: inline-block;
             background-color: #205b80;
             color: white;
-            padding: 12px 18px;
+            padding: 10px 15px;
             border-radius: 6px;
             text-decoration: none;
             margin-bottom: 20px;
+        }
+
+        .editar, .excluir {
+            display: inline-block;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 2px;
+        }
+
+        .editar {
+            background-color: #e6a23c;
+        }
+
+        .excluir {
+            background-color: #c0392b;
         }
 
         table {
@@ -80,15 +97,18 @@
     <main>
         <h2>Lista de Clientes</h2>
 
-        <a class="botao" href="/clientes/cadastrar/">+ Cadastrar novo cliente</a>
+        <a class="botao" href="/clientes/cadastrar/">
+            + Cadastrar novo cliente
+        </a>
 
         <table>
             <tr>
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Telefone</th>
-                <th>Email</th>
+                <th>E-mail</th>
                 <th>Endereço</th>
+                <th>Ações</th>
             </tr>
 
             {% for cliente in clientes %}
@@ -98,15 +118,30 @@
                 <td>{{ cliente.telefone }}</td>
                 <td>{{ cliente.email }}</td>
                 <td>{{ cliente.endereco }}</td>
+
+                <td>
+                    <a class="editar"
+                       href="{% url 'editar_cliente' cliente.id %}">
+                        Editar
+                    </a>
+
+                    <a class="excluir"
+                       href="{% url 'excluir_cliente' cliente.id %}">
+                        Excluir
+                    </a>
+                </td>
             </tr>
+
             {% empty %}
             <tr>
-                <td colspan="5">Nenhum cliente cadastrado.</td>
+                <td colspan="6">Nenhum cliente cadastrado.</td>
             </tr>
             {% endfor %}
         </table>
 
-        <a class="voltar" href="/">Voltar para página inicial</a>
+        <a class="voltar" href="/">
+            Voltar para página inicial
+        </a>
     </main>
 
 </body>
