@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Agência de Viagens</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f6fa;
+        }
+
+        header {
+            background-color: #123b5d;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h2 {
+            color: #123b5d;
+        }
+
+        .botao {
+            display: inline-block;
+            background-color: #205b80;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #205b80;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f6fa;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: #205b80;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Agência de Viagens</h1>
+        <p>Clientes cadastrados</p>
+    </header>
+
+    <main>
+        <h2>Lista de Clientes</h2>
+
+        <a class="botao" href="/clientes/cadastrar/">+ Cadastrar novo cliente</a>
+
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Endereço</th>
+            </tr>
+
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.cpf }}</td>
+                <td>{{ cliente.telefone }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.endereco }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Nenhum cliente cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a class="voltar" href="/">Voltar para página inicial</a>
+    </main>
+
+</body>
+</html>

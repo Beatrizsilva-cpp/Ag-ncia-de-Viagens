@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Cliente</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f6fa;
+        }
+
+        header {
+            background-color: #123b5d;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h2 {
+            color: #123b5d;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            background-color: #205b80;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #123b5d;
+        }
+
+        .voltar {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #205b80;
+            text-decoration: none;
+        }
+
+        .erro {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Agência de Viagens</h1>
+        <p>Cadastro de Clientes</p>
+    </header>
+
+    <main>
+        <h2>Novo Cliente</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="{{ form.nome.id_for_label }}">Nome:</label>
+            {{ form.nome }}
+            <div class="erro">{{ form.nome.errors }}</div>
+
+            <label for="{{ form.cpf.id_for_label }}">CPF:</label>
+            {{ form.cpf }}
+            <div class="erro">{{ form.cpf.errors }}</div>
+
+            <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
+            {{ form.telefone }}
+            <div class="erro">{{ form.telefone.errors }}</div>
+
+            <label for="{{ form.email.id_for_label }}">E-mail:</label>
+            {{ form.email }}
+            <div class="erro">{{ form.email.errors }}</div>
+
+            <label for="{{ form.endereco.id_for_label }}">Endereço:</label>
+            {{ form.endereco }}
+            <div class="erro">{{ form.endereco.errors }}</div>
+
+            <button type="submit">Cadastrar Cliente</button>
+        </form>
+
+        <a class="voltar" href="/clientes/">Voltar para clientes</a>
+    </main>
+
+</body>
+</html>
