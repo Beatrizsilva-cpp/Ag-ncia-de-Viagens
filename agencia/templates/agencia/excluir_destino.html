@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Destino - Agência de Viagens</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        header {
+            background-color: #173b57;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .excluir {
+            background-color: #dc3545;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cancelar {
+            display: inline-block;
+            background-color: #6c757d;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .erro {
+            color: #dc3545;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Excluir Destino</h1>
+</header>
+
+<div class="container">
+
+    <h2>Deseja realmente excluir este destino?</h2>
+
+    <p><strong>{{ destino.nome }}</strong></p>
+
+    {% if erro %}
+        <p class="erro">{{ erro }}</p>
+
+        <a class="cancelar" href="{% url 'destinos' %}">
+            Voltar
+        </a>
+
+    {% else %}
+
+        <p>Esta ação não poderá ser desfeita.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <button type="submit" class="excluir">
+                Sim, excluir
+            </button>
+
+            <a class="cancelar" href="{% url 'destinos' %}">
+                Cancelar
+            </a>
+        </form>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Destino - Agência de Viagens</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        header {
+            background-color: #173b57;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #173b57;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #245777;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: #173b57;
+            text-decoration: none;
+        }
+
+        .erro {
+            color: red;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cadastrar Destino</h1>
+</header>
+
+<div class="container">
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Nome do destino:</label>
+        {{ form.nome }}
+        <div class="erro">{{ form.nome.errors }}</div>
+
+        <label>País:</label>
+        {{ form.pais }}
+        <div class="erro">{{ form.pais.errors }}</div>
+
+        <label>Estado:</label>
+        {{ form.estado }}
+        <div class="erro">{{ form.estado.errors }}</div>
+
+        <label>Descrição:</label>
+        {{ form.descricao }}
+        <div class="erro">{{ form.descricao.errors }}</div>
+
+        <button type="submit">Salvar Destino</button>
+    </form>
+
+    <a class="voltar" href="{% url 'destinos' %}">
+        Voltar para destinos
+    </a>
+
+</div>
+
+</body>
+</html>
