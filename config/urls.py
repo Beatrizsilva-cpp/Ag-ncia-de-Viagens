@@ -7,16 +7,26 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.inicio, name='inicio'),
-
+        # PACOTES DE VIAGEM
+    path('pacotes/', views.listar_pacotes, name='pacotes'),
+    path('pacotes/cadastrar/', views.cadastrar_pacote, name='cadastrar_pacote'),
+    path('pacotes/<int:id>/editar/', views.editar_pacote, name='editar_pacote'),
+    path('pacotes/<int:id>/excluir/', views.excluir_pacote, name='excluir_pacote'),
     # CLIENTES
     path('clientes/', views.listar_clientes, name='clientes'),
     path('clientes/cadastrar/', views.cadastrar_cliente, name='cadastrar_cliente'),
     path('clientes/<int:id>/editar/', views.editar_cliente, name='editar_cliente'),
     path('clientes/<int:id>/excluir/', views.excluir_cliente, name='excluir_cliente'),
 
-    # DESTINOS
+       # DESTINOS
     path('destinos/', views.listar_destinos, name='destinos'),
     path('destinos/cadastrar/', views.cadastrar_destino, name='cadastrar_destino'),
     path('destinos/<int:id>/editar/', views.editar_destino, name='editar_destino'),
     path('destinos/<int:id>/excluir/', views.excluir_destino, name='excluir_destino'),
+
+    # PACOTES DE VIAGEM
+    path('pacotes/', views.listar_pacotes, name='pacotes'),
+    path('pacotes/cadastrar/', views.cadastrar_pacote, name='cadastrar_pacote'),
+    path('pacotes/<int:id>/editar/', views.editar_pacote, name='editar_pacote'),
+    path('pacotes/<int:id>/excluir/', views.excluir_pacote, name='excluir_pacote'),
 ]

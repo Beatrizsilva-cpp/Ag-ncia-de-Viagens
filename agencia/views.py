@@ -1,8 +1,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Cliente, Destino
-from .forms import ClienteForm, DestinoForm
-
+from .models import Cliente, Destino, PacoteViagem
+from .forms import ClienteForm, DestinoForm, PacoteViagemForm
 
 def inicio(request):
     return render(request, 'agencia/inicio.html')
@@ -118,4 +117,63 @@ def excluir_destino(request, id):
 
     return render(request, 'agencia/excluir_destino.html', {
         'destino': destino
+    })
+# PACOTES DE VIAGEM
+
+def listar_pacotes(request):
+    pacotes = PacoteViagem.objects.select_related('destino').all()
+
+    return render(request, 'agencia/pacotes.html', {
+        'pacotes': pacotes
+    })
+
+
+def cadastrar_pacote(request):
+    if request.method == 'POST':
+        form = PacoteViagemForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('pacotes')
+    else:
+        form = PacoteViagemForm()
+
+    return render(request, 'agencia/cadastrar_pacote.html', {
+        'form': form
+    })
+
+
+def editar_pacote(request, id):
+    pacote = get_object_or_404(PacoteViagem, id=id)
+
+    if request.method == 'POST':
+        form = PacoteViagemForm(request.POST, instance=pacote)
+
+        if form.is_valid():
+            form.save()
+            return redirect('pacotes')
+    else:
+        form = PacoteViagemForm(instance=pacote)
+
+    return render(request, 'agencia/editar_pacote.html', {
+        'form': form,
+        'pacote': pacote
+    })
+
+
+def excluir_pacote(request, id):
+    pacote = get_object_or_404(PacoteViagem, id=id)
+
+    if request.method == 'POST':
+        if pacote.reservas.exists():
+            return render(request, 'agencia/excluir_pacote.html', {
+                'pacote': pacote,
+                'erro': 'Não é possível excluir este pacote, pois existem reservas vinculadas a ele.'
+            })
+
+        pacote.delete()
+        return redirect('pacotes')
+
+    return render(request, 'agencia/excluir_pacote.html', {
+        'pacote': pacote
     })

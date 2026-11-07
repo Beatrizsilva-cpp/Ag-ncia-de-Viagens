@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Pacote</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f8;
+        }
+
+        header {
+            background-color: #173b57;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 60%;
+            margin: 35px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 11px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        button {
+            background-color: #173b57;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .voltar {
+            color: #173b57;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .erro {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cadastrar Pacote de Viagem</h1>
+    <p>Cadastre uma nova opção de viagem</p>
+</header>
+
+<div class="container">
+
+    <h2>Informações do pacote</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Salvar Pacote</button>
+    </form>
+
+    <a class="voltar" href="{% url 'pacotes' %}">
+        ← Voltar para pacotes
+    </a>
+
+</div>
+
+</body>
+</html>
