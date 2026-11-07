@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Pagamento</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f8;
+        }
+
+        header {
+            background-color: #173b57;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+            margin: 60px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        button {
+            background-color: red;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-left: 15px;
+            color: #173b57;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Excluir Pagamento</h1>
+</header>
+
+<div class="container">
+
+    <h2>Deseja realmente excluir este pagamento?</h2>
+
+    <p><strong>Pagamento nº:</strong> {{ pagamento.id }}</p>
+    <p><strong>Cliente:</strong> {{ pagamento.reserva.cliente.nome }}</p>
+    <p><strong>Valor:</strong> R$ {{ pagamento.valor }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit">Sim, excluir</button>
+
+        <a class="voltar" href="{% url 'pagamentos' %}">
+            Cancelar
+        </a>
+    </form>
+
+</div>
+
+</body>
+</html>

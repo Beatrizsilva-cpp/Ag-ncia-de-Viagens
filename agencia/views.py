@@ -1,8 +1,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Cliente, Destino, PacoteViagem, Reserva
-from .forms import ClienteForm, DestinoForm, PacoteViagemForm, ReservaForm
-
+from .models import Cliente, Destino, PacoteViagem, Reserva, Pagamento
+from .forms import ClienteForm, DestinoForm, PacoteViagemForm, ReservaForm, PagamentoForm
 def inicio(request):
     return render(request, 'agencia/inicio.html')
 
@@ -233,4 +232,62 @@ def cancelar_reserva(request, id):
 
     return render(request, 'agencia/cancelar_reserva.html', {
         'reserva': reserva
+    })
+
+# PAGAMENTOS
+
+def listar_pagamentos(request):
+    pagamentos = Pagamento.objects.select_related(
+        'reserva',
+        'reserva__cliente',
+        'reserva__pacote'
+    ).all().order_by('-data_pagamento')
+
+    return render(request, 'agencia/pagamentos.html', {
+        'pagamentos': pagamentos
+    })
+
+
+def cadastrar_pagamento(request):
+    if request.method == 'POST':
+        form = PagamentoForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('pagamentos')
+    else:
+        form = PagamentoForm()
+
+    return render(request, 'agencia/cadastrar_pagamento.html', {
+        'form': form
+    })
+
+
+def editar_pagamento(request, id):
+    pagamento = get_object_or_404(Pagamento, id=id)
+
+    if request.method == 'POST':
+        form = PagamentoForm(request.POST, instance=pagamento)
+
+        if form.is_valid():
+            form.save()
+            return redirect('pagamentos')
+    else:
+        form = PagamentoForm(instance=pagamento)
+
+    return render(request, 'agencia/editar_pagamento.html', {
+        'form': form,
+        'pagamento': pagamento
+    })
+
+
+def excluir_pagamento(request, id):
+    pagamento = get_object_or_404(Pagamento, id=id)
+
+    if request.method == 'POST':
+        pagamento.delete()
+        return redirect('pagamentos')
+
+    return render(request, 'agencia/excluir_pagamento.html', {
+        'pagamento': pagamento
     })

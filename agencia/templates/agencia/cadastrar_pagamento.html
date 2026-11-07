@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Pagamento</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f8;
+        }
+
+        header {
+            background-color: #173b57;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 60%;
+            margin: 35px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        button {
+            background-color: #173b57;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .voltar {
+            color: #173b57;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cadastrar Pagamento</h1>
+    <p>Registre um pagamento de reserva</p>
+</header>
+
+<div class="container">
+
+    <h2>Informações do pagamento</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Salvar Pagamento</button>
+    </form>
+
+    <a class="voltar" href="{% url 'pagamentos' %}">
+        ← Voltar para pagamentos
+    </a>
+
+</div>
+
+</body>
+</html>

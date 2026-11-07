@@ -1,0 +1,87 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Pagamento</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f8;
+        }
+
+        header {
+            background-color: #173b57;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #173b57;
+            text-align: center;
+        }
+
+        .campo {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 18px;
+            box-sizing: border-box;
+        }
+
+        button, a {
+            display: inline-block;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #173b57;
+            color: white;
+        }
+
+        a {
+            background-color: #777;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Agência de Viagens</h1>
+    <p>Editar Pagamento</p>
+</header>
+
+<main>
+    <h2>Editar Pagamento</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Salvar Alterações</button>
+        <a href="{% url 'pagamentos' %}">Voltar</a>
+    </form>
+</main>
+
+</body>
+</html>
+```

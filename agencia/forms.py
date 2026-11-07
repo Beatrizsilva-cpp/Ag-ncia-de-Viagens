@@ -1,7 +1,6 @@
 
 from django import forms
-from .models import Cliente, Destino, PacoteViagem, Reserva
-
+from .models import Cliente, Destino, PacoteViagem, Reserva, Pagamento
 
 class ClienteForm(forms.ModelForm):
     class Meta:
@@ -78,4 +77,30 @@ class ReservaForm(forms.ModelForm):
                 attrs={'class': 'campo', 'min': '1'}
             ),
             'status': forms.Select(attrs={'class': 'campo'}),
+        }
+
+
+class PagamentoForm(forms.ModelForm):
+    class Meta:
+        model = Pagamento
+        fields = [
+            'reserva',
+            'valor',
+            'data_pagamento',
+            'forma_pagamento',
+            'pago'
+        ]
+
+        widgets = {
+            'reserva': forms.Select(attrs={'class': 'campo'}),
+            'valor': forms.NumberInput(
+                attrs={'class': 'campo', 'step': '0.01'}
+            ),
+            'data_pagamento': forms.DateInput(
+                attrs={'class': 'campo', 'type': 'date'}
+            ),
+            'forma_pagamento': forms.Select(
+                attrs={'class': 'campo'}
+            ),
+            'pago': forms.CheckboxInput(),
         }
