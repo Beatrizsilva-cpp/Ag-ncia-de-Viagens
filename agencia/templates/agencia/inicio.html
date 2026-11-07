@@ -22,22 +22,25 @@
             text-align: center;
         }
 
-        nav {
-            background-color: #205b80;
-            padding: 15px;
-            text-align: center;
-        }
+       
+nav {
+    background-color: #245d7d;
+    padding: 18px;
+    text-align: center;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 15px;
-            font-weight: bold;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 18px;
+}
 
-        nav a:hover {
-            color: #b9e4ff;
-        }
+nav a:hover {
+    color: #cce6f5;
+}
+
 
         main {
             text-align: center;
@@ -66,14 +69,19 @@
         <p>Sistema de Gestão de Viagens e Reservas</p>
     </header>
 
-    <nav>
-        <a href="/admin/">Painel Administrativo</a>
-        <a href="/clientes/">Clientes</a>
-        <a href="#">Destinos</a>
-        <a href="#">Pacotes</a>
-        <a href="#">Reservas</a>
-        <a href="#">Pagamentos</a>
-    </nav>
+    
+<nav>
+    <a href="{% url 'admin:index' %}">Painel Administrativo</a>
+
+    <a href="{% url 'clientes' %}">Clientes</a>
+
+    <a href="{% url 'destinos' %}">Destinos</a>
+
+    <a href="{% url 'pacotes' %}">Pacotes</a>
+
+    <a href="{% url 'reservas' %}">Reservas</a>
+</nav>
+
 
     <main>
 

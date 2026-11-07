@@ -29,4 +29,10 @@ urlpatterns = [
     path('pacotes/cadastrar/', views.cadastrar_pacote, name='cadastrar_pacote'),
     path('pacotes/<int:id>/editar/', views.editar_pacote, name='editar_pacote'),
     path('pacotes/<int:id>/excluir/', views.excluir_pacote, name='excluir_pacote'),
+
+        # RESERVAS
+    path('reservas/', views.listar_reservas, name='reservas'),
+    path('reservas/cadastrar/', views.cadastrar_reserva, name='cadastrar_reserva'),
+    path('reservas/<int:id>/editar/', views.editar_reserva, name='editar_reserva'),
+    path('reservas/<int:id>/cancelar/', views.cancelar_reserva, name='cancelar_reserva'),
 ]

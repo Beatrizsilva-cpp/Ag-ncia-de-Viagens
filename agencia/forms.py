@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Cliente, Destino, PacoteViagem
+from .models import Cliente, Destino, PacoteViagem, Reserva
 
 
 class ClienteForm(forms.ModelForm):
@@ -60,3 +60,22 @@ class PacoteViagemForm(forms.ModelForm):
             'ativo': forms.CheckboxInput(),
         }
 
+
+class ReservaForm(forms.ModelForm):
+    class Meta:
+        model = Reserva
+        fields = [
+            'cliente',
+            'pacote',
+            'quantidade_pessoas',
+            'status'
+        ]
+
+        widgets = {
+            'cliente': forms.Select(attrs={'class': 'campo'}),
+            'pacote': forms.Select(attrs={'class': 'campo'}),
+            'quantidade_pessoas': forms.NumberInput(
+                attrs={'class': 'campo', 'min': '1'}
+            ),
+            'status': forms.Select(attrs={'class': 'campo'}),
+        }

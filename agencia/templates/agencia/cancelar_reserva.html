@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cancelar Reserva</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f8;
+        }
+
+        header {
+            background-color: #173b57;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+            margin: 60px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        button {
+            background-color: red;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-left: 15px;
+            color: #173b57;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Cancelar Reserva</h1>
+</header>
+
+<div class="container">
+
+    <h2>Deseja realmente cancelar esta reserva?</h2>
+
+    <p><strong>Reserva nº:</strong> {{ reserva.id }}</p>
+    <p><strong>Cliente:</strong> {{ reserva.cliente.nome }}</p>
+    <p><strong>Pacote:</strong> {{ reserva.pacote.titulo }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit">Sim, cancelar reserva</button>
+
+        <a class="voltar" href="{% url 'reservas' %}">
+            Voltar
+        </a>
+    </form>
+
+</div>
+
+</body>
+</html>
